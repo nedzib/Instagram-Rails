@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html class="w-full flex items-center text-center	bg-gray-100">
   <head>
     <title>Instagram</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="flex items-center m-auto">
+    <main class="container mx-auto mt-28 px-5 flex items-center">
+      <%= yield %>
+    </main>
   </body>
 </html>

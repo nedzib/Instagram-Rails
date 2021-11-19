@@ -1,0 +1,25 @@
+
+
+div[class="central_box"]
+  = image_tag"Instagram_logo_text.svg", class: "logo"
+  = form_tag :action => 'try' do
+    = text_field_tag 'user', @user, placeholder: "Teléfono, Usuario o Correo Electrónico"
+    = text_field_tag 'password', @password, placeholder: "Contraseña"
+    = submit_tag 'Iniciar sesión', class: "button_login"
+  br
+  div[class="sub-box"]
+    div[class="separator"]
+    label[class="o_text" ]
+      |O
+    div[class="separator"]
+  br
+  div[class="sub-box"]
+    a.fb_text[href="google.com"]
+      i.fab.fa-facebook-square
+      | Iniciar sesión con Facebook
+  br
+  a.recover_link[href="google.com"]
+    | ¿Olvidaste tu contraseña?
+  br
+
+
