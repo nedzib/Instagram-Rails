@@ -1,0 +1,30 @@
+= form_with(model: post, class: "contents") do |form|
+  - if post.errors.any?
+    #error_explanation.bg-red-50.text-red-500.px-3.py-2.font-medium.rounded-lg.mt-3
+      h2
+        = pluralize(post.errors.count, "error")
+        |  prohibited this post from being saved:
+      ul
+        - post.errors.each do |error|
+          li
+            = error.full_message
+  .my-5.text-left
+    = form.label "Sube una imagen", class: "ml-3"
+    = form.file_field :post_cover, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+  .my-5.text-left
+    = form.label "Descripción", class: "ml-3"
+    = form.text_area :body, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+  .inline
+    = form.submit "Subir", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium"
+
+form[class="w-full border-solid border-t" data-controller="post" enctype="multipart/form-data"]
+  br
+  label
+    | Sube una imagen
+  input[type="file" accept="image/png, image/jpeg" data-post-target="image"]
+  br
+  label
+    | Descripcion
+  input[class="p-4 m-0 bg-white rounded-none w-4/5 outline-none" placeholder="Añadir una descripción..." data-post-target="description"]
+  button[class="px-5 m-0 text-blue-500 font-bold p-4   w-1/5" data-action="click->post#create" ]
+    | Publicar

@@ -1,0 +1,21 @@
+doctype html
+html.w-full.flex.items-center.text-center.bg-gray-100
+  head
+    title
+      | Instagram
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = csrf_meta_tags
+    = csp_meta_tag
+    = action_cable_meta_tag
+    = stylesheet_link_tag "inter-font", "data-turbo-track": "reload"
+    = stylesheet_link_tag "tailwind", "data-turbo-track": "reload"
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbo-track': 'reload'
+    link[rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"]
+    script[src="//unpkg.com/alpinejs" defer]
+    = favicon_link_tag asset_path('favicon.png')
+  body.flex.flex-col.items-center.m-auto.w-full
+    - if signed_in?
+      = render "home/nav", class: "w-full"
+    main.mx-auto.mt-10.px-5.flex.items-center.flex-col
+      = yield

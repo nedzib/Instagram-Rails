@@ -8,6 +8,7 @@ div[class="flex flex-col w-full items-center m-auto"]
         = f.password_field :password, class: "mb-5 bg-gray-100 h-35px w-auto pl-5px rounded", placeholder: "Contraseña"
       .actions
         = f.submit "Iniciar sesión", class: "w-full bg-blue-400 leading-8 text-white font-bold"
+    = render "devise/shared/notices"
     div.flex.flex-row.items-center
       div.h-0.border-solid.border.bg-gray-400.w-24
       label.ml-10px.mr-10px.text-gray-400.font-bold.ml-5.mr-5.my-3
@@ -15,7 +16,8 @@ div[class="flex flex-col w-full items-center m-auto"]
       div.h-0.border-solid.border.bg-gray-400.w-24
     = render "devise/shared/recover"
   br
-  div[class="flex flex-row items-center border-solid border rounded bg-white" style="width: 350px"  ]
-    label[class="m-auto mt-3 mb-3"]
-      | ¿No tienes una cuenta?
-      = render "devise/shared/signup"
+  = turbo_frame_tag 'login' do
+    div[class="flex flex-row items-center border-solid border rounded bg-white" style="width: 350px"  ]
+      label[class="m-auto mt-3 mb-3"]
+        | ¿No tienes una cuenta?
+        = render "devise/shared/signup"

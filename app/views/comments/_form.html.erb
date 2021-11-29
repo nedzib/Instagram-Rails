@@ -1,6 +1,6 @@
-<%= form_with(model: comment) do |form| %>
+<%= form_with(model: comment, class: "contents") do |form| %>
   <% if comment.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
 
       <ul>
@@ -11,22 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :user %>
-    <%= form.text_field :user %>
+  <div class="my-5">
+    <%= form.label :userID %>
+    <%= form.number_field :userID, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="field">
+  <div class="my-5">
     <%= form.label :postID %>
-    <%= form.number_field :postID %>
+    <%= form.number_field :postID, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="field">
+  <div class="my-5">
     <%= form.label :body %>
-    <%= form.text_field :body %>
+    <%= form.text_field :body, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
   </div>
 <% end %>

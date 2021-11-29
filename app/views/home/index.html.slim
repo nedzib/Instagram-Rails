@@ -1,0 +1,18 @@
+/ div[data-controller="hello"]
+/   input[data-hello-target="name" type="text" id="STname"]
+/   button[data-action="click->hello#greet"]
+/     |  Greet
+/   span[data-hello-target="output"]
+div[data-controller="comment"]
+  span[data-comment-target="output"]
+div[class="flex flex-col w-full items-center m-auto"]
+  = render "devise/shared/notices"
+  div[class="items-center m-auto"]
+    #posts.min-w-full
+      = render "home/post"
+
+/ div[ x-data="{ open: false }"]
+/   button [@click="open = true" @click.away="open = false"]
+/     |Expand
+/   span [x-show="open"]
+/     |Content...

@@ -1,0 +1,46 @@
+- Post.where(person: current_person).each do |post|
+  div[class="m-auto border-solid border bg-white" style="width: 700px" ]
+    div[class="items-center text-left border-solid border flex flex-row justify-between" style="height: 50px"]
+      h1[class="ml-5" ]
+        = current_person.username
+      div.relative[data-controller="post" data-action="post:click:outside->post#noShow"]
+        h1[class="mr-5 font-bold cursor-pointer select-none" data-action="click->post#dropdown"]
+          | ...
+        .origin-top-right.absolute.right-0.text-center.mt-2.w-48.rounded-md.shadow-lg.px-1.py-1.bg-white.ring-1.ring-black.ring-opacity-5.focus:outline-none.invisible[role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" data-post-target="dropdownItem"]
+          input[type="hidden" data-target="post.post" value="#{post.id}"]
+          label[class="select-none block rounded px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-700 hover:text-white" data-action="click->post#delete"]
+            | Borrar post
+    div[class= "flex align-center"]
+      div[class= "m-auto w-full"]
+        = image_tag(post.post_cover, class: "w-full")
+    div[class="items-center text-left border-solid border flex flex-row justify-between text-3xl" style="height: 50px"]
+      div[class="ml-5" data-controller="likes"]
+        div[data-controller="likes"]
+          input[type="hidden" data-likes-target="post" value="#{post.id}"]
+          input[type="hidden" data-likes-target="user" value="#{current_person.id}"]
+          - if Like.find_by(post: post, person: current_person)
+            i.fas.fa-heart[data-likes-target="icon" data-action="click->likes#heart" class="transition transition-colors duration-200 ease-in-out text-red-500"]
+          - else
+            i.far.fa-heart[data-likes-target="icon" data-action="click->likes#heart" class="transition transition-colors duration-200 ease-in-out"]
+          i.far.fa-comment.ml-2
+          i.far.fa-paper-plane.ml-2
+      i.far.fa-bookmark.mr-5
+    div[class="text-left"]
+      p[class="my-5 ml-5"]
+        strong.block.font-medium.mb-1
+          span.font-bold.text-sm
+            = "#{current_person.username} "
+          = post.body
+        - Comment.where(post: post).each do |comment|
+          label[class="font-bold mr-1 ml-1"]
+            = "#{comment.person.username}"
+          = comment.body
+          br
+    form[class="w-full border-solid border-t" data-controller="chat"]
+      input[type="hidden" data-target="chat.post" value="#{post.id}"]
+      input[type="hidden" data-target="chat.user" value="#{current_person.id}"]
+      input[class="p-4 m-0 bg-white rounded-none w-4/5 outline-none" placeholder="Añadir un comentario..." data-target="chat.input" ]
+      button[class="px-5 m-0 text-blue-500 font-bold p-4   w-1/5" data-action="click->chat#post" ]
+        | Publicar
+  br
+  br
