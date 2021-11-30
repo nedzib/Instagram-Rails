@@ -18,11 +18,10 @@ nav.bg-white.w-full.flex.flex-row.w-full.sticky.top-0
               .flex.items-center
                 .ml-3.relative[data-controller="nav-dropdown" data-action="nav-dropdown:click:outside->nav-dropdown#close"]
                   div
-                    button#user-menu-button.bg-gray-800.flex.text-sm.rounded-full.focus:outline-none.focus:ring-2.focus:ring-offset-2.focus:ring-offset-gray-800.focus:ring-white[type="button" aria-expanded="false" aria-haspopup="true" data-action="click->nav-dropdown#open"]
+                    button#user-menu-button.bg-gray-800.flex.text-sm.rounded-full[type="button" aria-expanded="false" aria-haspopup="true" data-action="click->nav-dropdown#open"]
                       span.sr-only
                         | Abrir menú
-                      img.h-8.w-8.rounded-full[src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""]
+                      = image_tag("avatar.png", class: "h-8 w-8 rounded-full mx-auto bg-white")
                   .origin-top-right.absolute.right-0.mt-2.w-48.rounded-md.shadow-lg.py-1.bg-white.ring-1.ring-black.ring-opacity-5.focus:outline-none.invisible[role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" data-nav-dropdown-target="dropdown"]
-                    a[href="#" role="menuitem" tabindex="-1" class="select-none block rounded px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-700 hover:text-white" ]
-                      | Perfil
+                    = link_to "Perfil", "profile", class: "select-none block rounded px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-700 hover:text-white"
                     = link_to "Salir", destroy_person_session_path, method: :delete, class: "select-none block rounded px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-700 hover:text-white"

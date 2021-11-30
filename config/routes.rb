@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'profile/index'
   resources :posts
   get 'home/index'
   devise_for :people, controllers: {

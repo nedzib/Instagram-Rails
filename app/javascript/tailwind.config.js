@@ -1,15 +1,18 @@
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
+  mode: 'jit',
   theme: {
     extend: {
-      width: {
-        '350': '350px',
-      }
-    }
+      animation: {
+        fade: 'fadeOut 5s ease-in-out',
+      },
+      keyframes: theme => ({
+        fadeOut: {
+          '0%': { backgroundColor: theme('colors.red.300') },
+          '100%': { backgroundColor: theme('colors.transparent') },
+        },
+      }),
+    },
   },
-  variants: {
-    extend: {},
-  },
+  variants: {},
   plugins: [],
 }

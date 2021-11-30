@@ -17,5 +17,6 @@ html.w-full.flex.items-center.text-center.bg-gray-100
   body.flex.flex-col.items-center.m-auto.w-full
     - if signed_in?
       = render "home/nav", class: "w-full"
-    main.mx-auto.mt-10.px-5.flex.items-center.flex-col
+    main.mx-auto.mt-10.px-5.flex.items-center.flex-col.w-full
+      = render "devise/shared/notices"
       = yield
