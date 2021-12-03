@@ -9,7 +9,10 @@
     br
     input[placeholder="#{current_person.email}" class="text-sm text-gray-600 rounded border-solid border text-center" data-profileEdit-target="email"]
     br
-    input[placeholder="#{current_person.cellphone}" class="text-sm text-gray-600 rounded border-solid border text-center mb-5" data-profileEdit-target="cellphone" data-action="keydown->profileEdit#keydown"]
+    - if current_person.cellphone != nil
+      input[placeholder="#{current_person.cellphone}" class="text-sm text-gray-600 rounded border-solid border text-center mb-5" data-profileEdit-target="cellphone" data-action="keydown->profileEdit#keydown"]
+    - else
+      input[placeholder="Número de teléfono" class="text-sm text-gray-600 rounded border-solid border text-center mb-5" data-profileEdit-target="cellphone" data-action="keydown->profileEdit#keydown"]
     br
     div[data-action="click->profileEdit#update"]
       = link_to "Guardar", "profile/index", class: "border rounded-full py-2 px-4 text-xs font-semibold hover:bg-gray-700 hover:text-white"

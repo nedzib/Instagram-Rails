@@ -16,3 +16,5 @@
           = link_to "Editar", "profile/edit", class: "border rounded-full py-2 px-4 text-xs font-semibold hover:bg-gray-700 hover:text-white"
     div[class="py-2 hover:bg-gray-700 hover:text-white" ]
       = link_to "Cerrar Sesión", destroy_person_session_path, method: :delete, class: "text-m font-medium leading-none h-full w-full"
+#posts.min-w-full.mt-10
+  = render "home/my_post"

@@ -1,0 +1,16 @@
+.my-2[class="w-2/5"]
+  .bg-white.rounded.overflow-hidden.shadow-lg
+    = turbo_frame_tag 'profile' do
+      .text-center.p-6.border-b
+        p.pt-2.text-lg.font-bold
+          = Person.find(params[:id]).username
+        = image_tag("avatar.png", class: "h-24 w-24 rounded-full mx-auto my-2")
+        p.text-lg.font-semibold
+          = Person.find(params[:id]).name
+        p.text-sm.text-gray-600
+          = Person.find(params[:id]).email
+        p.text-sm.text-gray-600
+          - if Person.find(params[:id]).cellphone != nil
+            | #{Person.find(params[:id]).cellphone}
+#posts.min-w-full.mt-10
+  = render "profile/user_post"
