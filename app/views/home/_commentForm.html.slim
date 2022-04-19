@@ -1,0 +1,26 @@
+/ div[data-controller="chat"]
+/   = form_with(model: comment, class: "contents") do |form|
+/     - if comment.errors.any?
+/       #error_explanation.bg-red-50.text-red-500.px-3.py-2.font-medium.rounded-lg.mt-3
+/         h2
+/           = pluralize(comment.errors.count, "error")
+/           |  prohibited this comment from being saved:
+/         ul
+/           - comment.errors.each do |error|
+/             li
+/               = error.full_message
+/     .inline.flex.flex-row
+/       = form.text_field :body, class: "block shadow rounded-md border border-gray-200 outline-none px-1 py-1 w-4/5 leading-7"
+/       = form.hidden_field :post, data-target => "chat.post", value: params[:post]
+/       = form.hidden_field :person, data-target => "chat.user", value: current_person.id
+/       / input[ type="hidden" data-target="chat.post" value="#{params[:post]}"]
+/       / input[ type="hidden" data-target="chat.user" value="#{current_user.id}"]
+/       div[data-action="click->chat#post"]
+/         = form.submit "Comentar", class: "rounded-lg py-1 px-1 bg-blue-600 text-white inline-block font-medium w-1/5 leading-7"
+p
+  |asdasd
+form[class="w-full" data-controller="chat"]
+  input[ type="hidden" data-target="chat.post" value="#{post.id}"]
+  input[ type="hidden" data-target="chat.user" value="#{current_user.id}"]
+  input[class="rounded-l-lg p-4 m-0 bg-white rounded-none w-4/5 " placeholder="Add a comment..."  data-target="chat.input" ]
+  button[class="px-5 rounded-r-lg  m-0 text-blue-500 font-bold p-4   w-1/5" data-action="click->chat#post" ] Post

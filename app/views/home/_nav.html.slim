@@ -1,0 +1,58 @@
+nav.bg-white.w-full.flex.flex-row.w-full.sticky.top-0
+  .max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.w-full
+    .flex.items-center.justify-center.h-16
+      .flex.items-center.w-full[style= "justify-content: space-between"]
+        .flex-shrink-0.flex.flex-row
+          = link_to '', "/", class: "fab fa-instagram block lg:hidden h-8 w-auto text-3xl mr-2"
+          = link_to image_tag("Instagram_logo_text.svg", class: "hidden lg:block h-8 w-auto"), root_path
+          div.flex.flex-row.hover:bg-gray-700.rounded.text-center.ml-5.p-1.items-center.hover:text-white
+            = link_to '', "/home/new", class: "block far fa-plus-square text-2xl"
+            = link_to 'Postear', "/home/new", class: "block text-sm ml-1"
+        div[data-controller="users-search" data-reflex-root="#morph" class="items-center" style="width: 200px" ]
+          input.form-control.form-control-lg.d-inline-block.col-4.rounded[type="text" placeholder="Busca un usuario..." data-users-search-target="query" data-action="input->users-search#perform"]
+            #morph.mt-1.absolute.invisible.border-2.rounded.bg-white[data-users-search-target="count" data-action="users-search:click:outside->users-search#close" style="width: 250px" ]
+              - if @searchUsers.present?
+                - @searchUsers.each do |user|
+                  - if request.original_url.include? "profile"
+                    = link_to "user?id=#{user.id}" do
+                      div.border-b.flex.flex-row.hover:bg-gray-700.hover:text-white.cursor-pointer.rounded.items-center.align-left.my-1
+                        = image_tag("avatar.png", class: "h-8 w-8 rounded-full bg-white ml-3 select-none")
+                        p.text-left.ml-5.select-none
+                          span.font-bold
+                            = user.username
+                          br
+                          = user.name
+                  - else
+                    = link_to "profile/user?id=#{user.id}" do
+                      div.border-b.flex.flex-row.hover:bg-gray-700.hover:text-white.cursor-pointer.rounded.items-center.align-left.my-1
+                        = image_tag("avatar.png", class: "h-8 w-8 rounded-full bg-white ml-3 select-none")
+                        p.text-left.ml-5.select-none
+                          span.font-bold
+                            = user.username
+                          br
+                          = user.name
+                  / = link_to if request.original_url.include? "profile" ? "user?id=#{user.id}" : "profile/user?id=#{user.id}" do
+                  /   div.border-b.flex.flex-row.hover:bg-gray-700.hover:text-white.cursor-pointer.rounded.items-center.align-left.my-1
+                  /     = image_tag("avatar.png", class: "h-8 w-8 rounded-full bg-white ml-3 select-none")
+                  /     p.text-left.ml-5.select-none
+                  /       span.font-bold
+                  /         = user.username
+                  /       br
+                  /       = user.name
+        .hidden.sm:block.sm:ml-6
+          .flex.space-x-4
+            a.text-gray-300.hover:bg-gray-700.hover:text-white.px-3.py-2.rounded-md.text-sm.font-medium[href="#"]
+              | Comments
+            a.text-gray-300.hover:bg-gray-700.hover:text-white.px-3.py-2.rounded-md.text-sm.font-medium[href="#"]
+              | Likes
+            .hidden.sm:ml-6.sm:block
+              .flex.items-center
+                .ml-3.relative[data-controller="nav-dropdown" data-action="nav-dropdown:click:outside->nav-dropdown#close"]
+                  div
+                    button#user-menu-button.bg-gray-800.flex.text-sm.rounded-full[type="button" aria-expanded="false" aria-haspopup="true" data-action="click->nav-dropdown#open"]
+                      span.sr-only
+                        | Abrir menú
+                      = image_tag("avatar.png", class: "h-8 w-8 rounded-full mx-auto bg-white")
+                  .origin-top-right.absolute.right-0.mt-2.w-48.rounded-md.shadow-lg.py-1.bg-white.ring-1.ring-black.ring-opacity-5.focus:outline-none.invisible[role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" data-nav-dropdown-target="dropdown"]
+                    = link_to "Perfil", profile_index_url, class: "select-none block rounded px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-700 hover:text-white"
+                    = link_to "Salir", destroy_person_session_path, method: :delete, class: "select-none block rounded px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-700 hover:text-white"

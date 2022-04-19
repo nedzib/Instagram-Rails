@@ -1,0 +1,46 @@
+= turbo_frame_tag 'login' do
+  div[class="flex flex-col w-full items-center m-auto"]
+    div[ class="flex flex-col items-center border-solid border rounded bg-white" style="width: 350px" ]
+      / = image_tag "Instagram_logo_text.svg", class: "w-1/2 m-auto mt-30px mb-3 mt-3"
+      p[class="mb-3 mt-3 text-gray-400 font-bold ml-10 mr-10" ]
+        | Regístrate para ver fotos y videos de tus amigos.
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        .field
+          = f.email_field :email, placeholder: "Correo electrónico", class: "mt-3 bg-gray-100 h-35px w-auto pl-5px rounded"
+          - if resource.errors.full_messages_for(:email).any?
+          - resource.errors.full_messages_for(:email).each do |message|
+            p[class="text-blue-500 text-xs font-bold"]
+              = message
+        .field
+          = f.text_field :name, placeholder: "Nombre completo", class: "mt-3 bg-gray-100 h-35px w-auto pl-5px rounded"
+          - if resource.errors.full_messages_for(:name).any?
+            - resource.errors.full_messages_for(:name).each do |message|
+              p[class="text-blue-500 text-xs font-bold"]
+                = message
+        .field
+          = f.text_field :username, placeholder: "Nombre de usuario", class: "mt-3 bg-gray-100 h-35px w-auto pl-5px rounded"
+          - if resource.errors.full_messages_for(:username).any?
+            - resource.errors.full_messages_for(:username).each do |message|
+              p[class="text-blue-500 text-xs font-bold"]
+                = message
+        .field
+          = f.password_field :password, placeholder: "Contraseña", class: "mt-3 bg-gray-100 h-35px w-auto pl-5px rounded"
+          - if resource.errors.full_messages_for(:password).any?
+            - resource.errors.full_messages_for(:password).each do |message|
+              p[class="text-blue-500 text-xs font-bold"]
+                = message
+        .field
+          = f.password_field :password_confirmation, placeholder: "Contraseña", class: "mt-3 bg-gray-100 h-35px w-auto pl-5px rounded"
+          - if resource.errors.full_messages_for(:password_confirmation).any?
+            - resource.errors.full_messages_for(:password_confirmation).each do |message|
+              p[class="text-blue-500 text-xs font-bold"]
+                = message
+        .actions
+          = f.submit "Registrarte", class: "w-full bg-blue-400 leading-8 text-white font-bold mt-3"
+      br
+    br
+      div[class="flex flex-row items-center border-solid border rounded bg-white" style="width: 350px" ]
+        label[class="m-auto mt-3 mb-3"]
+          = render "devise/shared/instructions"
+          br
+          = render "devise/shared/links"

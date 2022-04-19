@@ -1,0 +1,20 @@
+.my-2[class="w-2/5"]
+  .bg-white.rounded.overflow-hidden.shadow-lg
+    = turbo_frame_tag 'profile' do
+      .text-center.p-6.border-b
+        p.pt-2.text-lg.font-bold
+          = Person.find(current_person.id).username
+        = image_tag("avatar.png", class: "h-24 w-24 rounded-full mx-auto my-2")
+        p.text-lg.font-semibold
+          = Person.find(current_person.id).name
+        p.text-sm.text-gray-600
+          = Person.find(current_person.id).email
+        p.text-sm.text-gray-600
+          - if Person.find(current_person.id).cellphone != nil
+            | #{Person.find(current_person.id).cellphone}
+        .mt-5[data-controller="profileEdit"]
+          = link_to "Editar", "edit", class: "border rounded-full py-2 px-4 text-xs font-semibold hover:bg-gray-700 hover:text-white"
+    div[class="py-2 hover:bg-gray-700 hover:text-white" ]
+      = link_to "Cerrar Sesión", destroy_person_session_path, method: :delete, class: "text-m font-medium leading-none h-full w-full"
+#posts.min-w-full.mt-10
+  = render "home/my_post"

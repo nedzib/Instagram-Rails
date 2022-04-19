@@ -1,0 +1,25 @@
+= turbo_frame_tag 'profile' do
+  form.text-center.p-6.border-b[data-controller="profileEdit"]
+    input[type="hidden" data-profileEdit-target="id" value="#{current_person.id}"]
+    input[placeholder="#{current_person.username}" class="text-lg font-bold rounded border-solid border text-center" data-profileEdit-target="username"]
+    div.relative.w-24.m-auto.my-2
+      = image_tag("avatar.png", class: "h-24 w-24 rounded-full mx-auto")
+      i.fas.fa-exchange-alt.absolute.right-0.bottom-0.text-gray-500.bg-white.hover:bg-gray-700.hover:text-white.rounded-full.p-2.border
+    input[placeholder="#{current_person.name}" class="text-lg font-semibold rounded border-solid border text-center" data-profileEdit-target="name"]
+    br
+    input[placeholder="#{current_person.email}" class="text-sm text-gray-600 rounded border-solid border text-center" data-profileEdit-target="email"]
+    br
+    - if current_person.cellphone != nil
+      input[placeholder="#{current_person.cellphone}" class="text-sm text-gray-600 rounded border-solid border text-center mb-5" data-profileEdit-target="cellphone" data-action="keydown->profileEdit#keydown"]
+    - else
+      input[placeholder="Número de teléfono" class="text-sm text-gray-600 rounded border-solid border text-center mb-5" data-profileEdit-target="cellphone" data-action="keydown->profileEdit#keydown"]
+    br
+    div[data-action="click->profileEdit#update"]
+      = link_to "Guardar", "index", class: "border rounded-full py-2 px-4 text-xs font-semibold hover:bg-gray-700 hover:text-white"
+
+    / form[class="w-full border-solid border-t" data-controller="chat"]
+    /   input[type="hidden" data-target="chat.post" value="#{post.id}"]
+    /   input[type="hidden" data-target="chat.user" value="#{current_person.id}"]
+    /   input[class="p-4 m-0 bg-white rounded-none w-4/5 outline-none" placeholder="Añadir un comentario..." data-target="chat.input" ]
+    /   button[class="px-5 m-0 text-blue-500 font-bold p-4   w-1/5" data-action="click->chat#post" ]
+    /     | Publicar
